@@ -5,7 +5,9 @@ SRC := \
 	swap.c \
 	rotate.c \
 	reverse_rotate.c \
-	utility.c
+	utility.c \
+	op_utility.c \
+	radix.c
 
 LIBFT_DIR := Libft
 LIBFT := $(LIBFT_DIR)/libft.a
