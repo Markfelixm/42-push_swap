@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:47 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/15 17:20:11 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:46:32 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	debug(t_stacks *stacks)
 
 int	main(int ac, char **av)
 {
+	t_ops	*ops;
 	t_stacks *stacks;
 	int		*num_ptr;
 	int		index;
@@ -78,29 +79,14 @@ int	main(int ac, char **av)
 		free (num_ptr);
 		index++;
 	}
+	// TODO: handle input as a string aswell, i.e. if ac == 2
+
 	// debug
-
-	radix(stacks);
-	debug(stacks);
-	// pb(stacks);
-	// pb(stacks);
-	// pb(stacks);
-	// rb(stacks);
-	// pa(stacks);
-	// pa(stacks);
-	// pa(stacks);
-	// t_ops	*ops;
-	// ops = init_ops();
-	// if (ops == NULL)
-	// 	return (ft_printf("op list alloc fail. remember to free stuff\n"));
-	// add_op(ops, pb(stacks));
-	// add_op(ops, pb(stacks));
-	// add_op(ops, rb(stacks));
-	// add_op(ops, pa(stacks));
-	// print_ops(ops);
-
-	// debug(stacks);
+	ops = radix(stacks);
+	if (ops != NULL)
+		print_ops(ops);
 	// end debug
+
 	// TODO: free everything
-	return (0);
+	clean_exit(stacks, ops, false);
 }

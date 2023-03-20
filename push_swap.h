@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:52 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/15 17:46:43 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:44:30 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include "Libft/get_next_line_bonus.h"
 # include "Libft/libft.h"
 
-# define MAX_OPS_LEN 10000
+# include <stdbool.h>
+
+# define OPS_MAX_LEN 10000
 
 typedef enum e_op
 {
@@ -83,14 +85,19 @@ void		add_op(t_ops *t_ops, t_op op);
 void		print_ops(t_ops	*ops);
 // void		perform_ops(t_ops *ops, t_stacks *stacks);
 
+// Sort Utility
+int			*bubble_sort_a(t_stacks *stacks);
+bool		is_sorted(t_stacks *stacks);
+
 // Utility
 int			*atoi_ptr(const char *str);
 int			is_unique(int num, t_stacks *stacks);
 t_stacks	*init_stacks(int ac);
-void		clean_stacks(t_stacks *stacks);
+void		clean_exit(t_stacks *stacks, t_ops *ops, bool is_error);
 int			get_index(t_stacks *stacks, int i);
 
 // Sorting
-void		radix(t_stacks *stacks);
+t_ops		*radix(t_stacks *stacks);
+void		set_order(t_stacks *stacks, t_ops *ops);
 
 #endif

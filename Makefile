@@ -5,10 +5,11 @@ SRC := \
 	swap.c \
 	rotate.c \
 	reverse_rotate.c \
+	parse.c \
 	utility.c \
 	op_utility.c \
+	sort_utility.c \
 	radix.c
-
 LIBFT_DIR := Libft
 LIBFT := $(LIBFT_DIR)/libft.a
 CC_FLAG := -Wall -Wextra -Werror -fsanitize=address -g -O3

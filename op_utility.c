@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:09:44 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/15 17:46:42 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:20:03 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_ops	*init_ops(void)
 	ops = malloc(sizeof(t_ops));
 	if (ops == NULL)
 		return (NULL);
-	ops->ops = malloc(sizeof(t_op) * MAX_OPS_LEN);
+	ops->ops = malloc(sizeof(t_op) * OPS_MAX_LEN);
 	if (ops->ops == NULL)
 	{
 		free (ops);
@@ -43,27 +43,27 @@ void	print_ops(t_ops	*ops)
 	while (++i < ops->len)
 	{
 		if (ops->ops[i] == 0)
-			ft_printf("SA");
+			ft_printf("sa");
 		if (ops->ops[i] == 1)
-			ft_printf("SB");
+			ft_printf("sb");
 		if (ops->ops[i] == 2)
-			ft_printf("SS");
+			ft_printf("ss");
 		if (ops->ops[i] == 3)
-			ft_printf("PA");
+			ft_printf("pa");
 		if (ops->ops[i] == 4)
-			ft_printf("PB");
+			ft_printf("pb");
 		if (ops->ops[i] == 5)
-			ft_printf("RA");
+			ft_printf("ra");
 		if (ops->ops[i] == 6)
-			ft_printf("RB");
+			ft_printf("rb");
 		if (ops->ops[i] == 7)
-			ft_printf("RR");
+			ft_printf("rr");
 		if (ops->ops[i] == 8)
-			ft_printf("RRA");
+			ft_printf("rra");
 		if (ops->ops[i] == 9)
-			ft_printf("RRB");
+			ft_printf("rrb");
 		if (ops->ops[i] == 10)
-			ft_printf("RRR");
+			ft_printf("rrr");
 		ft_printf("\n");
 	}
 }

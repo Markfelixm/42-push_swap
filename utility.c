@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 17:00:17 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/14 13:39:09 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:44:52 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_stacks	*init_stacks(int ac)
 	stacks->b = malloc(sizeof(t_pair) * ac);
 	if (stacks->a == NULL || stacks->b == NULL)
 	{
-		clean_stacks(stacks);
+		clean_exit(stacks, NULL, true);
 		return (NULL);
 	}
 	stacks->a_start = 0;
@@ -78,15 +78,25 @@ t_stacks	*init_stacks(int ac)
 	return (stacks);
 }
 
-void	clean_stacks(t_stacks *stacks)
+void	clean_exit(t_stacks *stacks, t_ops *ops, bool is_error)
 {
-	if (stacks == NULL)
-		return ;
-	if (stacks->a)
-		free(stacks->a);
-	if (stacks->b)
-		free(stacks->b);
-	free(stacks);
+	if (ops)
+	{
+		if (ops->ops)
+			free(ops->ops);
+		free(ops);
+	}
+	if (stacks)
+	{
+		if (stacks->a)
+			free(stacks->a);
+		if (stacks->b)
+			free(stacks->b);
+		free(stacks);
+	}
+	if (is_error)
+		write(2, "Error\n", 6);
+	exit(0);
 }
 
 int	get_index(t_stacks *stacks, int i)
