@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:09:44 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/20 21:20:03 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:30:53 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,61 +41,32 @@ void	print_ops(t_ops	*ops)
 
 	i = -1;
 	while (++i < ops->len)
-	{
-		if (ops->ops[i] == 0)
-			ft_printf("sa");
-		if (ops->ops[i] == 1)
-			ft_printf("sb");
-		if (ops->ops[i] == 2)
-			ft_printf("ss");
-		if (ops->ops[i] == 3)
-			ft_printf("pa");
-		if (ops->ops[i] == 4)
-			ft_printf("pb");
-		if (ops->ops[i] == 5)
-			ft_printf("ra");
-		if (ops->ops[i] == 6)
-			ft_printf("rb");
-		if (ops->ops[i] == 7)
-			ft_printf("rr");
-		if (ops->ops[i] == 8)
-			ft_printf("rra");
-		if (ops->ops[i] == 9)
-			ft_printf("rrb");
-		if (ops->ops[i] == 10)
-			ft_printf("rrr");
-		ft_printf("\n");
-	}
+		print_op(ops->ops[i]);
 }
 
-// void	perform_ops(t_ops *ops, t_stacks *stacks, int start)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < ops->len)
-// 	{
-// 		if (ops->ops[i] == 0)
-// 			sa(stacks);
-// 		if (ops->ops[i] == 1)
-// 			sb(stacks);
-// 		if (ops->ops[i] == 2)
-// 			ss(stacks);
-// 		if (ops->ops[i] == 3)
-// 			pa(stacks);
-// 		if (ops->ops[i] == 4)
-// 			pb(stacks);
-// 		if (ops->ops[i] == 5)
-// 			ra(stacks);
-// 		if (ops->ops[i] == 6)
-// 			rb(stacks);
-// 		if (ops->ops[i] == 7)
-// 			rr(stacks);
-// 		if (ops->ops[i] == 8)
-// 			rra(stacks);
-// 		if (ops->ops[i] == 9)
-// 			rrb(stacks);
-// 		if (ops->ops[i] == 10)
-// 			rrr(stacks);
-// 	}
-// }
+void	print_op(t_op op)
+{
+	if (op == 0)
+		ft_printf("sa");
+	if (op == 1)
+		ft_printf("sb");
+	if (op == 2)
+		ft_printf("ss");
+	if (op == 3)
+		ft_printf("pa");
+	if (op == 4)
+		ft_printf("pb");
+	if (op == 5)
+		ft_printf("ra");
+	if (op == 6)
+		ft_printf("rb");
+	if (op == 7)
+		ft_printf("rr");
+	if (op == 8)
+		ft_printf("rra");
+	if (op == 9)
+		ft_printf("rrb");
+	if (op == 10)
+		ft_printf("rrr");
+	ft_printf("\n");
+}

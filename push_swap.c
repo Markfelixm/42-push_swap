@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:47 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/21 14:38:52 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:43:28 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ int	main(int ac, char **av)
 	stacks = parse_to_stacks(ac, av);
 	if (stacks == NULL)
 		clean_exit(stacks, NULL, true);
-
+	if (is_sorted(stacks))
+		clean_exit(stacks, NULL, false);
 	// debug
 	ops = radix(stacks);
 	if (ops != NULL)
 		print_ops(ops);
-	debug(stacks);
+	// debug(stacks);
 	// end debug
 	// TODO: check leaks
 	clean_exit(stacks, ops, false);

@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 21:40:20 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/21 14:42:11 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:32:29 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ t_stacks	*joined_to_stacks(char *joined)
 	int			*num_ptr;
 
 	splits = ft_split(joined, ' ');
+	free(joined);
 	if (splits == NULL)
 		return (NULL);
 	s = 0;
 	while (splits[s])
 		s++;
 	if (s < 2)
-		return (NULL);
+		clean_exit(NULL, NULL, false);
 	stacks = init_stacks(s);
 	if (stacks == NULL)
 		return (NULL);
@@ -63,9 +64,13 @@ t_stacks	*joined_to_stacks(char *joined)
 		if (!is_unique(*num_ptr, stacks))
 			return (NULL);
 		stacks->a[s].n = *num_ptr;
-		free (num_ptr);
+		free(num_ptr);
 		s++;
 	}
+	s = 0;
+	while (splits[s])
+		free(splits[s++]);
+	free(splits);
 	return (stacks);
 }
 

@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:52 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/21 14:29:11 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:31:23 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ t_stacks	*parse_to_stacks(int ac, char **av);
 t_ops		*init_ops(void);
 void		add_op(t_ops *t_ops, t_op op);
 void		print_ops(t_ops	*ops);
+void		print_op(t_op op);
 
 // Sort Utility
 int			*bubble_sort_a(t_stacks *stacks);

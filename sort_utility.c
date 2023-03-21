@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:38:27 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/20 21:45:02 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:43:18 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ bool	is_sorted(t_stacks *stacks)
 	while (++i < stacks->max_len)
 	{
 		if (sorted[i] != stacks->a[get_index(stacks, stacks->a_start + i)].n)
+		{
+			free(sorted);
 			return (false);
+		}
 	}
+	free(sorted);
 	return (true);
 }
 
@@ -37,14 +41,13 @@ int	*bubble_sort_a(t_stacks *stacks)
 	nums = malloc(sizeof(int) * stacks->max_len);
 	if (nums == NULL)
 		clean_exit(stacks, NULL, true);
-	i = -1;
-	while (++i < stacks->max_len)
+	i = stacks->max_len;
+	while (--i >= 0)
 		nums[i] = stacks->a[i].n;
-	i = -1;
 	while (++i < stacks->max_len)
 	{
 		j = -1;
-		while(++j < stacks->max_len - i - 1)
+		while (++j < stacks->max_len - i - 1)
 		{
 			if (nums[j] > nums[j + 1])
 			{

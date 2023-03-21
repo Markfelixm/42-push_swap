@@ -12,7 +12,7 @@ SRC := \
 	radix.c
 LIBFT_DIR := Libft
 LIBFT := $(LIBFT_DIR)/libft.a
-CC_FLAG := -Wall -Wextra -Werror -fsanitize=address -g -O3
+CC_FLAG := -Wall -Wextra -Werror -O3
 
 .PHONY: all clean fclean re
 
