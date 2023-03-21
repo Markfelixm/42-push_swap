@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 17:00:17 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/20 21:44:52 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:35:21 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_stacks	*init_stacks(int ac)
 	}
 	stacks->a_start = 0;
 	stacks->b_start = 0;
-	stacks->max_len = ac - 1;
+	stacks->max_len = ac;
 	stacks->a_len = stacks->max_len;
 	stacks->b_len = 0;
 	return (stacks);

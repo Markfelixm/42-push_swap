@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:47 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/20 21:46:32 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:38:52 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,34 +59,19 @@ int	main(int ac, char **av)
 {
 	t_ops	*ops;
 	t_stacks *stacks;
-	int		*num_ptr;
-	int		index;
 
-	if (ac < 3)
+	if (ac < 2)
 		return (42);
-	stacks = init_stacks(ac);
+	stacks = parse_to_stacks(ac, av);
 	if (stacks == NULL)
-		return (write(2, "Error\n", 6));
-	index = 0;
-	while (index < stacks->a_len)
-	{
-		num_ptr = atoi_ptr(av[index + 1]);
-		if (num_ptr == NULL)
-			return (write(2, "Error\n", 6));
-		if (!is_unique(*num_ptr, stacks))
-			return (write(2, "Error\n", 6));
-		stacks->a[index].n = *num_ptr;
-		free (num_ptr);
-		index++;
-	}
-	// TODO: handle input as a string aswell, i.e. if ac == 2
+		clean_exit(stacks, NULL, true);
 
 	// debug
 	ops = radix(stacks);
 	if (ops != NULL)
 		print_ops(ops);
+	debug(stacks);
 	// end debug
-
-	// TODO: free everything
+	// TODO: check leaks
 	clean_exit(stacks, ops, false);
 }
