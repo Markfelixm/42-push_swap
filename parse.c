@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 21:40:20 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/21 18:32:29 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:27:36 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,29 @@ char	*join_args(int ac, char **av)
 	return (joined);
 }
 
-t_stacks	*joined_to_stacks(char *joined)
+char	**joined_to_splits(char *joined, int *s)
 {
-	t_stacks	*stacks;
-	char		**splits;;
-	int			s;
-	int			*num_ptr;
+	char		**splits;
 
 	splits = ft_split(joined, ' ');
 	free(joined);
 	if (splits == NULL)
 		return (NULL);
-	s = 0;
-	while (splits[s])
-		s++;
-	if (s < 2)
+	*s = 0;
+	while (splits[*s])
+		(*s)++;
+	if (*s < 2)
 		clean_exit(NULL, NULL, false);
-	stacks = init_stacks(s);
+	return (splits);
+}
+
+t_stacks	*splits_to_stack(char **splits, int *count)
+{
+	t_stacks	*stacks;
+	int			s;
+	int			*num_ptr;
+
+	stacks = init_stacks(*count);
 	if (stacks == NULL)
 		return (NULL);
 	s = 0;
@@ -76,13 +82,19 @@ t_stacks	*joined_to_stacks(char *joined)
 
 t_stacks	*parse_to_stacks(int ac, char **av)
 {
-	char		*joined;
 	t_stacks	*stacks;
+	char		*joined;
+	char		**splits;
+	int			s;
 
 	joined = join_args(ac, av);
 	if (joined == NULL)
 		return (NULL);
-	stacks = joined_to_stacks(joined);
+	s = 0;
+	splits = joined_to_splits(joined, &s);
+	if (splits == NULL)
+		return (NULL);
+	stacks = splits_to_stack(splits, &s);
 	if (stacks == NULL)
 		return (NULL);
 	return (stacks);

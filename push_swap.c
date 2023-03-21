@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:47 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/21 18:43:28 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:41:22 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	debug(t_stacks *stacks)
 
 int	main(int ac, char **av)
 {
-	t_ops	*ops;
-	t_stacks *stacks;
+	t_stacks	*stacks;
+	t_ops		*ops;
 
 	if (ac < 2)
 		return (42);
@@ -67,12 +67,10 @@ int	main(int ac, char **av)
 		clean_exit(stacks, NULL, true);
 	if (is_sorted(stacks))
 		clean_exit(stacks, NULL, false);
-	// debug
 	ops = radix(stacks);
 	if (ops != NULL)
 		print_ops(ops);
-	// debug(stacks);
-	// end debug
-	// TODO: check leaks
+	// debug(stacks); // TODO: remove debugging
+	// leaks -q --atExit -- ./push_swap $(cat 100.txt)
 	clean_exit(stacks, ops, false);
 }

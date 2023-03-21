@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:38:27 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/21 18:43:18 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:33:16 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ bool	is_sorted(t_stacks *stacks)
 int	*bubble_sort_a(t_stacks *stacks)
 {
 	int	*nums;
-	int hold;
-	int i;
-	int j;
+	int	hold;
+	int	i;
+	int	j;
 
 	nums = malloc(sizeof(int) * stacks->max_len);
 	if (nums == NULL)

@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:05:31 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/20 21:45:21 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:40:02 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_ops	*radix(t_stacks *stacks)
 		return (NULL);
 	set_order(stacks, ops);
 	shift = -1;
-	while (++shift < (int)sizeof(int) * 8)
+	while (++shift < (int) sizeof(int) * 8)
 	{
 		i = -1;
 		while (++i < stacks->max_len)

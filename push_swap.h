@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:52 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/21 17:31:23 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:30:56 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_ops
 
 // TODO: REMOVE
 // DEBUGGGGGG
-void	debug(t_stacks *stacks);
+void		debug(t_stacks *stacks);
 
 // Operations
 t_op		sa(t_stacks *stacks);
@@ -81,7 +81,8 @@ t_op		rrr(t_stacks *stacks);
 
 // Parse
 char		*join_args(int ac, char **av);
-t_stacks	*joined_to_stacks(char *joined);
+char		**joined_to_splits(char *joined, int *s);
+t_stacks	*splits_to_stack(char **splits, int *count);
 t_stacks	*parse_to_stacks(int ac, char **av);
 
 // Operation Utility
