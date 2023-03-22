@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:38:27 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/21 20:33:16 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:09:55 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,23 @@
 
 bool	is_sorted(t_stacks *stacks)
 {
-	int	*sorted;
+	int	num;
 	int	i;
 
-	sorted = bubble_sort_a(stacks);
-	i = -1;
-	while (++i < stacks->max_len)
+	num = INT_MIN;
+	i = stacks->b_len;
+	while (--i >= 0)
 	{
-		if (sorted[i] != stacks->a[get_index(stacks, stacks->a_start + i)].n)
-		{
-			free(sorted);
+		if (num >= stacks->b[get_index(stacks, stacks->b_start + i)].order)
 			return (false);
-		}
+		num = stacks->b[get_index(stacks, stacks->b_start + i)].order;
 	}
-	free(sorted);
+	while (++i < stacks->a_len)
+	{
+		if (num >= stacks->a[get_index(stacks, stacks->a_start + i)].order)
+			return (false);
+		num = stacks->a[get_index(stacks, stacks->a_start + i)].order;
+	}
 	return (true);
 }
 

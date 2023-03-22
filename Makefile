@@ -6,13 +6,14 @@ SRC := \
 	rotate.c \
 	reverse_rotate.c \
 	parse.c \
+	print.c \
 	utility.c \
 	op_utility.c \
 	sort_utility.c \
 	radix.c
 LIBFT_DIR := Libft
 LIBFT := $(LIBFT_DIR)/libft.a
-CC_FLAG := -Wall -Wextra -Werror -O3
+CC_FLAG := -Wall -Wextra -Werror -O3 -g -fsanitize=address
 
 .PHONY: all clean fclean re
 

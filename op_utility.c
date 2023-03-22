@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:09:44 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/21 17:30:53 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/22 22:25:22 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_ops	*init_ops(void)
 {
 	t_ops	*ops;
+	int		i;
 
 	ops = malloc(sizeof(t_ops));
 	if (ops == NULL)
@@ -26,47 +27,43 @@ t_ops	*init_ops(void)
 		return (NULL);
 	}
 	ops->len = 0;
-	ops->marker = 0;
+	i = -1;
+	while (++i < OPS_MAX_LEN)
+		ops->ops[i] = NONE;
 	return (ops);
 }
 
-void	add_op(t_ops *t_ops, t_op op)
+void	add_op(t_ops *ops, t_op op)
 {
-	t_ops->ops[t_ops->len++] = op;
+	ops->ops[ops->len++] = op;
 }
 
-void	print_ops(t_ops	*ops)
-{
-	int	i;
+// void	shift_ops(t_stacks *stacks, t_ops *ops, int from, int to)
+// {
+// 	// this wont shift towards end because im looking for NONE. need a count but then cant pass stacks to clean exit..
+// 	t_ops	*copy;
+// 	int		count;
+// 	int		i;
 
-	i = -1;
-	while (++i < ops->len)
-		print_op(ops->ops[i]);
-}
+// 	copy = init_ops();
+// 	if (copy == NULL)
+// 		clean_exit(stacks, ops, true);
+// 	count = -1;
+// 	while (++count < OPS_MAX_LEN - from)
+// 		if (ops->ops[from + count] == NONE)
+// 			break ;
+// 	i = -1;
+// 	while (++i < count)
+// 	{
+// 		copy->ops[i] = ops->ops[from + i];
+// 		ops->ops[from + i] = NONE;
+// 	}
+// 	i = -1;
+// 	while (++i < count)
 
-void	print_op(t_op op)
-{
-	if (op == 0)
-		ft_printf("sa");
-	if (op == 1)
-		ft_printf("sb");
-	if (op == 2)
-		ft_printf("ss");
-	if (op == 3)
-		ft_printf("pa");
-	if (op == 4)
-		ft_printf("pb");
-	if (op == 5)
-		ft_printf("ra");
-	if (op == 6)
-		ft_printf("rb");
-	if (op == 7)
-		ft_printf("rr");
-	if (op == 8)
-		ft_printf("rra");
-	if (op == 9)
-		ft_printf("rrb");
-	if (op == 10)
-		ft_printf("rrr");
-	ft_printf("\n");
-}
+// }
+
+// void	insert_ops_at_index(t_ops *ops, t_op op, int i)
+// {
+
+// }

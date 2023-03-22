@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:52 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/21 20:30:56 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/22 22:25:39 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 typedef enum e_op
 {
+	NONE,
 	SA,
 	SB,
 	SS,
@@ -59,7 +60,6 @@ typedef struct s_ops
 {
 	t_op	*ops;
 	int		len;
-	int		marker;
 }			t_ops;
 
 // TODO: REMOVE
@@ -85,11 +85,14 @@ char		**joined_to_splits(char *joined, int *s);
 t_stacks	*splits_to_stack(char **splits, int *count);
 t_stacks	*parse_to_stacks(int ac, char **av);
 
+// Print
+void		print_ops(t_ops	*ops);
+void		print_op(t_op op);
+
 // Operation Utility
 t_ops		*init_ops(void);
 void		add_op(t_ops *t_ops, t_op op);
-void		print_ops(t_ops	*ops);
-void		print_op(t_op op);
+
 
 // Sort Utility
 int			*bubble_sort_a(t_stacks *stacks);
@@ -102,7 +105,7 @@ t_stacks	*init_stacks(int ac);
 void		clean_exit(t_stacks *stacks, t_ops *ops, bool is_error);
 int			get_index(t_stacks *stacks, int i);
 
-// Sorting
+// Radix
 t_ops		*radix(t_stacks *stacks);
 void		set_order(t_stacks *stacks, t_ops *ops);
 
