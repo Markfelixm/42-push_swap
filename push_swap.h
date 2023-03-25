@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:52 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/22 22:25:39 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/25 19:58:49 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,11 @@ t_op		rra(t_stacks *stacks);
 t_op		rrb(t_stacks *stacks);
 t_op		rrr(t_stacks *stacks);
 
+// Super Operations
+t_op		smart_rotate(t_stacks *stacks, int i, char stack);
+t_ops		*index_to_top(t_stacks *stacks, int i, char stack);
+t_ops		*top_to_index(t_stacks *stacks, int i, char stack);
+
 // Parse
 char		*join_args(int ac, char **av);
 char		**joined_to_splits(char *joined, int *s);
@@ -92,11 +97,7 @@ void		print_op(t_op op);
 // Operation Utility
 t_ops		*init_ops(void);
 void		add_op(t_ops *t_ops, t_op op);
-
-
-// Sort Utility
-int			*bubble_sort_a(t_stacks *stacks);
-bool		is_sorted(t_stacks *stacks);
+void		append_ops(t_ops *target, t_ops *add);
 
 // Utility
 int			*atoi_ptr(const char *str);
@@ -105,8 +106,15 @@ t_stacks	*init_stacks(int ac);
 void		clean_exit(t_stacks *stacks, t_ops *ops, bool is_error);
 int			get_index(t_stacks *stacks, int i);
 
+// Sort Utility
+int			*bubble_sort_a(t_stacks *stacks);
+bool		is_sorted(t_stacks *stacks);
+
+// Sort
+t_ops		*prepare_a_for_pa(t_stacks *stacks);
+
 // Radix
 t_ops		*radix(t_stacks *stacks);
-void		set_order(t_stacks *stacks, t_ops *ops);
+void		set_order(t_stacks *stacks);
 
 #endif

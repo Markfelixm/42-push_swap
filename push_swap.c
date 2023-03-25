@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:47 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/22 20:02:30 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:19:22 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,17 @@ int	main(int ac, char **av)
 		clean_exit(stacks, NULL, true);
 	if (is_sorted(stacks))
 		clean_exit(stacks, NULL, false);
-	ops = radix(stacks);
-	if (ops != NULL)
-		print_ops(ops);
-	// debug(stacks); // TODO: remove debugging
+	set_order(stacks);
+	// ops = radix(stacks);
+	// if (ops != NULL)
+	// 	print_ops(ops);
+
+	pb(stacks);
+	ops = prepare_a_for_pa(stacks);
+
+	print_ops(ops);
+	// print_ops(ops2);
+	debug(stacks); // TODO: remove debugging
 	// leaks -q --atExit -- ./push_swap $(cat 100.txt)
 	clean_exit(stacks, ops, false);
 }

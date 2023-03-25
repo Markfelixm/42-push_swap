@@ -5,8 +5,10 @@ SRC := \
 	swap.c \
 	rotate.c \
 	reverse_rotate.c \
+	super_operations.c \
 	parse.c \
 	print.c \
+	sort.c \
 	utility.c \
 	op_utility.c \
 	sort_utility.c \

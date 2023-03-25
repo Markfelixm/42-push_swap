@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:45:20 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/22 21:45:37 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/25 19:52:24 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	print_ops(t_ops	*ops)
 {
 	int	i;
 
+	if (ops == NULL)
+		return ;
 	i = -1;
 	while (++i < ops->len)
 		print_op(ops->ops[i]);

@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:05:31 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/22 22:02:36 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:03:53 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_ops	*radix(t_stacks *stacks)
 	ops = init_ops();
 	if (ops == NULL)
 		return (NULL);
-	set_order(stacks, ops);
 	shift = -1;
 	while (++shift < (int) sizeof(int) * 8)
 	{
@@ -64,7 +63,7 @@ t_ops	*radix(t_stacks *stacks)
 	return (ops);
 }
 
-void	set_order(t_stacks *stacks, t_ops *ops)
+void	set_order(t_stacks *stacks)
 {
 	int	*copy;
 	int	i;
@@ -72,7 +71,7 @@ void	set_order(t_stacks *stacks, t_ops *ops)
 
 	copy = bubble_sort_a(stacks);
 	if (copy == NULL)
-		clean_exit(stacks, ops, true);
+		clean_exit(stacks, NULL, true); // TODO: need to free ops first
 	i = -1;
 	while (++i < stacks->max_len)
 	{
@@ -88,23 +87,3 @@ void	set_order(t_stacks *stacks, t_ops *ops)
 	}
 	free(copy);
 }
-
-// t_ops	*optimize_ops(t_stacks *stacks, t_ops *ops)
-// {
-// 	int	i;
-// 	int	pb;
-// 	int	pa;
-
-// 	pb = 0;
-// 	pa = 0;
-// 	i = -1;
-// 	while (ops->ops[++i] == PB)
-// 		pb++;
-// 	while (ops->ops[++i] == PA)
-// 		pa++;
-// 	if (pb == pa)
-// 	while (pa + pb > 0)
-// 		remove_last_op()
-// 		remove pa+pb
-// }
-
