@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:52 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/25 19:58:49 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:49:25 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,18 @@ typedef enum e_op
 	RRR,
 }	t_op;
 
+typedef struct s_ops
+{
+	t_op	*ops;
+	int		len;
+}			t_ops;
+
 typedef struct s_pair
 {
-	int	n;
-	int	order;
-}		t_pair;
+	int		n;
+	int		order;
+	t_ops	*moves;
+}			t_pair;
 
 typedef struct s_stacks
 {
@@ -55,12 +62,6 @@ typedef struct s_stacks
 
 	int		max_len;
 }			t_stacks;
-
-typedef struct s_ops
-{
-	t_op	*ops;
-	int		len;
-}			t_ops;
 
 // TODO: REMOVE
 // DEBUGGGGGG
@@ -94,16 +95,22 @@ t_stacks	*parse_to_stacks(int ac, char **av);
 void		print_ops(t_ops	*ops);
 void		print_op(t_op op);
 
+// Clean
+void		clean_exit(t_stacks *stacks, t_ops *ops, bool is_error);
+void		free_stacks(t_stacks *stacks);
+void		free_ops(t_ops *ops);
+
 // Operation Utility
 t_ops		*init_ops(void);
 void		add_op(t_ops *t_ops, t_op op);
 void		append_ops(t_ops *target, t_ops *add);
+void		do_op(t_stacks *stacks, t_op op);
+void		perform_ops(t_stacks *stacks, t_ops *ops);
 
 // Utility
 int			*atoi_ptr(const char *str);
 int			is_unique(int num, t_stacks *stacks);
 t_stacks	*init_stacks(int ac);
-void		clean_exit(t_stacks *stacks, t_ops *ops, bool is_error);
 int			get_index(t_stacks *stacks, int i);
 
 // Sort Utility
@@ -112,6 +119,7 @@ bool		is_sorted(t_stacks *stacks);
 
 // Sort
 t_ops		*prepare_a_for_pa(t_stacks *stacks);
+t_ops		*select_best_moves(t_stacks *stacks);
 
 // Radix
 t_ops		*radix(t_stacks *stacks);

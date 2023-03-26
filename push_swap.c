@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:47 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/25 20:19:22 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:58:20 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	debug(t_stacks *stacks)
 	int index;
 
 	ft_printf("==============================START===========================\n");
-	ft_printf("A\n");
+	ft_printf("A\t");
 	index = 0;
 	while (index < stacks->a_len)
 	{
@@ -33,10 +33,10 @@ void	debug(t_stacks *stacks)
 	// }
 	// ft_printf("]");
 	ft_printf("\nlen:\t%d\n", stacks->a_len);
-	ft_printf("start:\t%d\n", stacks->a_start);
+	// ft_printf("start:\t%d\n", stacks->a_start);
 
 
-	ft_printf("\nB\n");
+	ft_printf("\nB\t");
 	index = 0;
 	while (index < stacks->b_len)
 	{
@@ -52,7 +52,8 @@ void	debug(t_stacks *stacks)
 	// }
 	// ft_printf("]");
 	ft_printf("\nlen:\t%d\n", stacks->b_len);
-	ft_printf("start:\t%d\n", stacks->b_start);
+	// ft_printf("start:\t%d\n", stacks->b_start);
+	ft_printf("\n");
 }
 
 int	main(int ac, char **av)
@@ -68,16 +69,22 @@ int	main(int ac, char **av)
 	if (is_sorted(stacks))
 		clean_exit(stacks, NULL, false);
 	set_order(stacks);
-	// ops = radix(stacks);
-	// if (ops != NULL)
-	// 	print_ops(ops);
+	// debug
 
 	pb(stacks);
-	ops = prepare_a_for_pa(stacks);
+	pb(stacks);
+	pb(stacks);
+	ft_printf("===========================iterations start==========================\n");
+	while (stacks->b_len)
+	{
+		debug(stacks);
+		ft_printf("operations to perform:\n");
+		ops = select_best_moves(stacks);
+		print_ops(ops);
+		perform_ops(stacks, ops);
+	}
 
-	print_ops(ops);
-	// print_ops(ops2);
-	debug(stacks); // TODO: remove debugging
-	// leaks -q --atExit -- ./push_swap $(cat 100.txt)
-	clean_exit(stacks, ops, false);
+	debug(stacks);
+	// end debug
+	clean_exit(stacks, NULL, false);
 }

@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:12:45 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/25 20:18:49 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/26 17:07:33 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,5 @@ t_ops	*index_to_top(t_stacks *stacks, int i, char stack)
 		shortest = i;
 	while (shortest-- > 0)
 		add_op(ops, smart_rotate(stacks, i, stack));
-	// {
-
-	// 	ft_printf("shortest: %d\n", shortest);
-	// 	print_ops(ops);
-	// 	ft_printf("ops len: %d\n", ops->len);
-	// }
 	return (ops);
 }
-
-// t_ops	*top_to_index(t_stacks *stacks, int i, char stack)
-// {
-
-// }
-

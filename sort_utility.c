@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:38:27 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/22 18:09:55 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:42:08 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,29 @@ int	*bubble_sort_a(t_stacks *stacks)
 		}
 	}
 	return (nums);
+}
+
+void	set_order(t_stacks *stacks)
+{
+	int	*copy;
+	int	i;
+	int	j;
+
+	copy = bubble_sort_a(stacks);
+	if (copy == NULL)
+		clean_exit(stacks, NULL, true); // TODO: need to free ops first
+	i = -1;
+	while (++i < stacks->max_len)
+	{
+		j = -1;
+		while (++j < stacks->max_len)
+		{
+			if (copy[i] == stacks->a[get_index(stacks, j)].n)
+			{
+				stacks->a[get_index(stacks, j)].order = i;
+				break ;
+			}
+		}
+	}
+	free(copy);
 }

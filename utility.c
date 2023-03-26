@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 17:00:17 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/21 14:48:26 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:28:05 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,30 +73,9 @@ t_stacks	*init_stacks(int ac)
 	stacks->a_start = 0;
 	stacks->b_start = 0;
 	stacks->max_len = ac;
-	stacks->a_len = stacks->max_len;
+	stacks->a_len = 0;
 	stacks->b_len = 0;
 	return (stacks);
-}
-
-void	clean_exit(t_stacks *stacks, t_ops *ops, bool is_error)
-{
-	if (ops)
-	{
-		if (ops->ops)
-			free(ops->ops);
-		free(ops);
-	}
-	if (stacks)
-	{
-		if (stacks->a)
-			free(stacks->a);
-		if (stacks->b)
-			free(stacks->b);
-		free(stacks);
-	}
-	if (is_error)
-		write(2, "Error\n", 6);
-	exit(0);
 }
 
 int	get_index(t_stacks *stacks, int i)
