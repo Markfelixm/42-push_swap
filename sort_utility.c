@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:38:27 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/26 19:42:08 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:02:36 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	set_order(t_stacks *stacks)
 
 	copy = bubble_sort_a(stacks);
 	if (copy == NULL)
-		clean_exit(stacks, NULL, true); // TODO: need to free ops first
+		clean_exit(stacks, NULL, true);
 	i = -1;
 	while (++i < stacks->max_len)
 	{

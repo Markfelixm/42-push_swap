@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:52 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/29 18:36:16 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/29 20:59:42 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_elem
 {
 	int		n;
 	int		order;
-	t_ops	*moves;
 }			t_elem;
 
 typedef struct s_stacks
@@ -89,8 +88,7 @@ t_op		rrr(t_stacks *stacks);
 
 // Super Operations
 t_op		smart_rotate(t_stacks *stacks, int i, char stack);
-t_ops		*index_to_top(t_stacks *stacks, int i, char stack);
-t_ops		*top_to_index(t_stacks *stacks, int i, char stack);
+void		index_to_top(t_stacks *stacks, int i, char stack, t_ops *ops);
 
 // Parse
 char		*join_args(int ac, char **av);
@@ -114,25 +112,24 @@ t_ops		*init_ops(void);
 
 // Operation Utility
 void		add_op(t_ops *t_ops, t_op op);
-void		append_ops(t_ops *target, t_ops *add);
 void		do_op(t_stacks *stacks, t_op op);
-void		perform_ops(t_stacks *stacks, t_ops *ops);
 
 // Utility
 int			*atoi_ptr(const char *str);
 bool		is_unique(int num, t_stacks *stacks);
 int			get_index(t_stacks *stacks, int i);
+t_elem		*get(t_stacks *stacks, int i, char stack);
 
 // Sort Utility
 int			*bubble_sort_a(t_stacks *stacks);
 bool		is_sorted(t_stacks *stacks);
 
 // Sort
-t_ops		*select_best_moves(t_stacks *stacks);
-t_ops		*push_all_but_3(t_stacks *stacks);
-t_ops		*sort_a_of_3(t_stacks *stacks);
+void		push_all_but_3(t_stacks *stacks, t_ops *ops);
 t_three		get_three(t_stacks *stacks);
-int			find_next_order(t_stacks *stacks, int arg, char stack);
+void		sort_a_of_3(t_stacks *stacks, t_ops *ops);
+void		select_best_moves(t_stacks *stacks, t_ops *ops);
+int			next_order_index(t_stacks *stacks, int arg, char stack);
 t_ops		*mad_sort(t_stacks *stacks);
 
 // Radix

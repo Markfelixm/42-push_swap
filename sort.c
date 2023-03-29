@@ -6,13 +6,13 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 19:27:49 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/29 18:34:39 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:00:44 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_next_order(t_stacks *stacks, int arg, char stack)
+int	next_order_index(t_stacks *stacks, int arg, char stack)
 {
 	int	next;
 	int	next_index;
@@ -21,9 +21,6 @@ int	find_next_order(t_stacks *stacks, int arg, char stack)
 	int	i;
 
 	next_index = INT_MIN;
-	stack = ft_tolower(stack);
-	if (stack != 'a' && stack != 'b')
-		return (next_index);
 	len = stacks->a_len;
 	if (stack == 'b')
 		len = stacks->b_len;
@@ -31,88 +28,87 @@ int	find_next_order(t_stacks *stacks, int arg, char stack)
 	i = -1;
 	while (++i < len)
 	{
-		order = stacks->a[get_index(stacks, stacks->a_start + i)].order;
+		order = get(stacks, i, 'a')->order;
 		if (stack == 'b')
-			order = stacks->b[get_index(stacks, stacks->b_start + i)].order;
+			order = get(stacks, i, 'b')->order;
 		if (order >= arg)
+		{
 			if (next > order)
 			{
 				next = order;
 				next_index = i;
 			}
+		}
 	}
 	if (next == INT_MAX)
-		return (find_next_order(stacks, 0, stack));
+		return (next_order_index(stacks, 0, stack));
 	return (next_index);
 }
 
-t_ops	*select_best_moves(t_stacks *stacks)
+void	select_best_moves(t_stacks *stacks, t_ops *ops)
 {
 	t_ops	*best;
-	t_ops	*moves;
-	t_ops	*add;
+	t_ops	*current;
 	int		i;
-	int		next_order_index;
+	int		order_index;
 
-	best = init_ops();
-	if (best == NULL)
-		return (NULL);
-	best->len = INT_MAX;
 	i = -1;
+	best = NULL;
 	while (++i < stacks->b_len)
 	{
-		moves = index_to_top(stacks, i, 'b');
-		if (moves == NULL)
-		{
-			clean_exit(stacks, best, true);
-		}
-			// return (NULL);
-		next_order_index = find_next_order(stacks, stacks->b[get_index(stacks, stacks->b_start + i)].order, 'a');
-		add = index_to_top(stacks, next_order_index, 'a');
-		// add = prepare_a_for_pa(stacks);
-		append_ops(moves, add);
-		free_ops(add);
-		add_op(moves, PA);
-		if (best->len > moves->len)
+		current = init_ops();
+		if (current == NULL)
 		{
 			free_ops(best);
-			best = moves;
+			clean_exit(stacks, ops, true);
 		}
-		// stacks->b[get_index(stacks, stacks->b_start + i)].moves = moves;
+		index_to_top(stacks, i, 'b', current);
+		order_index = next_order_index(stacks, get(stacks, i, 'b')->order, 'a');
+		index_to_top(stacks, order_index, 'a', current);
+		add_op(current, PA);
+		if (best == NULL || best->len > current->len)
+		{
+			free_ops(best);
+			best = current;
+		}
+		else
+			free_ops(current);
 	}
-	if (best->len == INT_MAX)
-		best->len = 0;
-	return (best);
+	i = -1;
+	while (++i < best->len)
+	{
+		do_op(stacks, best->ops[i]);
+		add_op(ops, best->ops[i]);
+	}
+	free_ops(best);
 }
 
 t_ops	*mad_sort(t_stacks *stacks)
 {
 	t_ops	*ops;
-	t_ops	*add;
-
-	ops = push_all_but_3(stacks); // performs
-	add = sort_a_of_3(stacks); // performs
-	append_ops(ops, add);
-	free_ops(add);
-	add = select_best_moves(stacks);
-	perform_ops(stacks, add);
-	append_ops(ops, add);
-	free_ops(add);
-	return (ops);
-}
-
-t_ops	*push_all_but_3(t_stacks *stacks)
-{
-	t_ops	*ops;
-	int	i;
+	int		order_zero;
+	int		op_count;
 
 	ops = init_ops();
 	if (ops == NULL)
 		clean_exit(stacks, NULL, true);
-	i = -1;
+	push_all_but_3(stacks, ops);
+	sort_a_of_3(stacks, ops);
+	while (stacks->b_len)
+		select_best_moves(stacks, ops);
+	order_zero = next_order_index(stacks, 0, 'a');
+	op_count = ops->len;
+	index_to_top(stacks, order_zero, 'a', ops);
+	op_count = ops->len - op_count + 1;
+	while (op_count-- > 0)
+		do_op(stacks, ops->ops[ops->len - op_count]);
+	return (ops);
+}
+
+void	push_all_but_3(t_stacks *stacks, t_ops *ops)
+{
 	while (stacks->a_len > 3)
 		add_op(ops, pb(stacks));
-	return (ops);
 }
 
 t_three	get_three(t_stacks *stacks)
@@ -125,39 +121,30 @@ t_three	get_three(t_stacks *stacks)
 	return (three);
 }
 
-t_ops	*sort_a_of_3(t_stacks *stacks)
+void	sort_a_of_3(t_stacks *stacks, t_ops *ops)
 {
-	t_ops	*ops;
 	t_three	three;
 
-	ops = init_ops();
-	if (ops == NULL)
-		clean_exit(stacks, NULL, true);
 	three = get_three(stacks);
 	if (three.mid > three.top)
 	{
 		if (three.bot > three.mid)
-			return (ops);
+			return ;
 		if (three.bot > three.top)
 			add_op(ops, sa(stacks));
 		else
 		{
 			add_op(ops, rra(stacks));
-			return (ops);
+			return ;
 		}
 	}
 	three = get_three(stacks);
 	if (three.bot > three.top)
 	{
 		add_op(ops, sa(stacks));
-		return (ops);
+		return ;
 	}
 	add_op(ops, ra(stacks));
 	if (three.mid > three.bot)
 		add_op(ops, sa(stacks));
-	return (ops);
 }
-
-//  TODO: the function that checks if sorted starting at order=0 and rotates it to top if sorted
-// the function that sorts a of len 3
-// (optional) longest consecutive sorted sequence

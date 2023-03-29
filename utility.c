@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 17:00:17 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/29 14:49:23 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:08:42 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,11 @@ int	*atoi_ptr(const char *str)
 	}
 	*ptr = sign * res;
 	return (ptr);
+}
+
+t_elem	*get(t_stacks *stacks, int i, char stack)
+{
+	if (stack == 'a')
+		return (&stacks->a[get_index(stacks, stacks->a_start + i)]);
+	return (&stacks->b[get_index(stacks, stacks->b_start + i)]);
 }
