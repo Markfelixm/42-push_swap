@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:47 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/26 19:58:20 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:34:12 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,25 @@ int	main(int ac, char **av)
 	stacks = parse_to_stacks(ac, av);
 	if (stacks == NULL)
 		clean_exit(stacks, NULL, true);
+	set_order(stacks);
 	if (is_sorted(stacks))
 		clean_exit(stacks, NULL, false);
-	set_order(stacks);
 	// debug
 
-	pb(stacks);
-	pb(stacks);
-	pb(stacks);
-	ft_printf("===========================iterations start==========================\n");
-	while (stacks->b_len)
-	{
-		debug(stacks);
-		ft_printf("operations to perform:\n");
-		ops = select_best_moves(stacks);
-		print_ops(ops);
-		perform_ops(stacks, ops);
-	}
+
+	ops = mad_sort(stacks);
+	print_ops(ops);
+	free_ops(ops);
+
+	// ft_printf("===========================iterations start==========================\n");
+	// while (stacks->b_len)
+	// {
+	// 	debug(stacks);
+	// 	ft_printf("operations to perform:\n");
+	// 	ops = select_best_moves(stacks);
+	// 	print_ops(ops);
+	// 	perform_ops(stacks, ops);
+	// }
 
 	debug(stacks);
 	// end debug

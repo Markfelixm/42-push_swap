@@ -6,25 +6,34 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 17:00:17 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/26 19:28:05 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:49:23 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_unique(int num, t_stacks *stacks)
+int	get_index(t_stacks *stacks, int i)
+{
+	if (i < 0)
+		return (i + stacks->max_len);
+	if (i > stacks->max_len - 1)
+		return (i - stacks->max_len);
+	return (i);
+}
+
+bool	is_unique(int num, t_stacks *stacks)
 {
 	int	index;
 
 	index = 0;
 	while (index < stacks->a_len)
 		if (stacks->a[index++].n == num)
-			return (0);
+			return (false);
 	index = 0;
 	while (index < stacks->b_len)
 		if (stacks->b[index++].n == num)
-			return (0);
-	return (1);
+			return (false);
+	return (true);
 }
 
 int	*atoi_ptr(const char *str)
@@ -54,35 +63,4 @@ int	*atoi_ptr(const char *str)
 	}
 	*ptr = sign * res;
 	return (ptr);
-}
-
-t_stacks	*init_stacks(int ac)
-{
-	t_stacks	*stacks;
-
-	stacks = malloc(sizeof(t_stacks));
-	if (stacks == NULL)
-		return (NULL);
-	stacks->a = malloc(sizeof(t_pair) * ac);
-	stacks->b = malloc(sizeof(t_pair) * ac);
-	if (stacks->a == NULL || stacks->b == NULL)
-	{
-		clean_exit(stacks, NULL, true);
-		return (NULL);
-	}
-	stacks->a_start = 0;
-	stacks->b_start = 0;
-	stacks->max_len = ac;
-	stacks->a_len = 0;
-	stacks->b_len = 0;
-	return (stacks);
-}
-
-int	get_index(t_stacks *stacks, int i)
-{
-	if (i < 0)
-		return (i + stacks->max_len);
-	if (i > stacks->max_len - 1)
-		return (i - stacks->max_len);
-	return (i);
 }

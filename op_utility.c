@@ -6,32 +6,11 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:09:44 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/26 17:07:03 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:04:04 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_ops	*init_ops(void)
-{
-	t_ops	*ops;
-	int		i;
-
-	ops = malloc(sizeof(t_ops));
-	if (ops == NULL)
-		return (NULL);
-	ops->ops = malloc(sizeof(t_op) * OPS_MAX_LEN);
-	if (ops->ops == NULL)
-	{
-		free (ops);
-		return (NULL);
-	}
-	ops->len = 0;
-	i = -1;
-	while (++i < OPS_MAX_LEN)
-		ops->ops[i] = NONE;
-	return (ops);
-}
 
 void	add_op(t_ops *ops, t_op op)
 {
@@ -57,8 +36,9 @@ void	perform_ops(t_stacks *stacks, t_ops *ops)
 	int	i;
 
 	i = -1;
-	while (++i < ops->len)
-		do_op(stacks, ops->ops[i]);
+	if (ops)
+		while (++i < ops->len)
+			do_op(stacks, ops->ops[i]);
 }
 
 void	do_op(t_stacks *stacks, t_op op)

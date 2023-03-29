@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 21:40:20 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/26 18:27:34 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/28 18:49:58 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,15 @@ t_stacks	*splits_to_stack(char **splits, int *count)
 	{
 		num_ptr = atoi_ptr(splits[s]);
 		if (num_ptr == NULL)
-			return (NULL);
+			return (free_splits(splits));
 		if (!is_unique(*num_ptr, stacks))
-			return (NULL);
+			return (free_splits(splits));
 		stacks->a_len++;
-		stacks->a[s].n = *num_ptr;
+		stacks->a[get_index(stacks, stacks->a_start + s)].n = *num_ptr;
 		free(num_ptr);
 		s++;
 	}
-	s = 0;
-	while (splits[s])
-		free(splits[s++]);
-	free(splits);
+	free_splits(splits);
 	return (stacks);
 }
 

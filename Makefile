@@ -9,6 +9,7 @@ SRC := \
 	parse.c \
 	print.c \
 	clean.c \
+	init.c \
 	sort.c \
 	utility.c \
 	op_utility.c \
@@ -16,7 +17,7 @@ SRC := \
 	radix.c
 LIBFT_DIR := Libft
 LIBFT := $(LIBFT_DIR)/libft.a
-CC_FLAG := -Wall -Wextra -Werror -O3 -g
+CC_FLAG := -Wall -Wextra -Werror -g
 
 .PHONY: all clean fclean re
 
