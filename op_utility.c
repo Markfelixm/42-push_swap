@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:09:44 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/29 20:59:48 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/30 20:13:27 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,26 @@ void	add_op(t_ops *ops, t_op op)
 
 void	do_op(t_stacks *stacks, t_op op)
 {
-	if (op == 1)
+	if (op == SA)
 		sa(stacks);
-	if (op == 2)
+	else if (op == SB)
 		sb(stacks);
-	if (op == 3)
+	else if (op == SS)
 		ss(stacks);
-	if (op == 4)
+	else if (op == PA)
 		pa(stacks);
-	if (op == 5)
+	else if (op == PB)
 		pb(stacks);
-	if (op == 6)
+	else if (op == RA)
 		ra(stacks);
-	if (op == 7)
+	else if (op == RB)
 		rb(stacks);
-	if (op == 8)
+	else if (op == RR)
 		rr(stacks);
-	if (op == 9)
+	else if (op == RRA)
 		rra(stacks);
-	if (op == 10)
+	else if (op == RRB)
 		rrb(stacks);
-	if (op == 11)
+	else if (op == RRR)
 		rrr(stacks);
 }

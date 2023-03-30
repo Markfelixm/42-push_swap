@@ -13,11 +13,10 @@ SRC := \
 	sort.c \
 	utility.c \
 	op_utility.c \
-	sort_utility.c \
-	radix.c
+	sort_utility.c
 LIBFT_DIR := Libft
 LIBFT := $(LIBFT_DIR)/libft.a
-CC_FLAG := -Wall -Wextra -Werror -g
+CC_FLAG := -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re
 

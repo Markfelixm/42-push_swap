@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:52 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/29 20:59:42 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:03:20 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include "Libft/libft.h"
 
 # include <stdbool.h>
-
-# define OPS_MAX_LEN 10000
 
 typedef enum e_op
 {
@@ -103,37 +101,35 @@ void		print_op(t_op op);
 // Clean
 void		clean_exit(t_stacks *stacks, t_ops *ops, bool is_error);
 void		free_stacks(t_stacks *stacks);
-void		free_ops(t_ops *ops);
+void		*free_ops(t_ops *ops);
 void		*free_splits(char **splits);
 
 // Initializer
 t_stacks	*init_stacks(int ac);
-t_ops		*init_ops(void);
+t_ops		*init_ops(int ops_max_len);
 
 // Operation Utility
 void		add_op(t_ops *t_ops, t_op op);
 void		do_op(t_stacks *stacks, t_op op);
 
 // Utility
-int			*atoi_ptr(const char *str);
+t_elem		*get(t_stacks *stacks, int i, char stack);
 bool		is_unique(int num, t_stacks *stacks);
 int			get_index(t_stacks *stacks, int i);
-t_elem		*get(t_stacks *stacks, int i, char stack);
+int			*atoi_ptr(const char *str);
+t_three		get_three(t_stacks *stacks);
 
 // Sort Utility
-int			*bubble_sort_a(t_stacks *stacks);
 bool		is_sorted(t_stacks *stacks);
+int			*bubble_sort_a(t_stacks *stacks);
+void		set_order(t_stacks *stacks);
+void		push_all_but_3(t_stacks *stacks, t_ops *ops);
 
 // Sort
-void		push_all_but_3(t_stacks *stacks, t_ops *ops);
-t_three		get_three(t_stacks *stacks);
+int			next_order_index_a(t_stacks *stacks, int arg);
+t_ops		*select_best_move(t_stacks *stacks);
+void		perform_best_move(t_stacks *stacks, t_ops *ops);
 void		sort_a_of_3(t_stacks *stacks, t_ops *ops);
-void		select_best_moves(t_stacks *stacks, t_ops *ops);
-int			next_order_index(t_stacks *stacks, int arg, char stack);
 t_ops		*mad_sort(t_stacks *stacks);
-
-// Radix
-t_ops		*radix(t_stacks *stacks);
-void		set_order(t_stacks *stacks);
 
 #endif

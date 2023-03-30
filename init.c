@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:55:24 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/28 19:59:50 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:56:32 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_stacks	*init_stacks(int ac)
 	return (stacks);
 }
 
-t_ops	*init_ops(void)
+t_ops	*init_ops(int ops_max_len)
 {
 	t_ops	*ops;
 	int		i;
@@ -35,7 +35,7 @@ t_ops	*init_ops(void)
 	ops = malloc(sizeof(t_ops));
 	if (ops == NULL)
 		return (NULL);
-	ops->ops = malloc(sizeof(t_op) * OPS_MAX_LEN);
+	ops->ops = malloc(sizeof(t_op) * ops_max_len);
 	if (ops->ops == NULL)
 	{
 		free (ops);
@@ -43,7 +43,7 @@ t_ops	*init_ops(void)
 	}
 	ops->len = 0;
 	i = -1;
-	while (++i < OPS_MAX_LEN)
+	while (++i < ops_max_len)
 		ops->ops[i] = NONE;
 	return (ops);
 }

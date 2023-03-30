@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:27:30 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/29 19:17:00 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:19:33 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@ void	clean_exit(t_stacks *stacks, t_ops *ops, bool is_error)
 	exit((int)is_error);
 }
 
-void	free_ops(t_ops *ops)
-{
-	if (ops)
-	{
-		if (ops->ops)
-			free(ops->ops);
-		free(ops);
-	}
-}
-
 void	free_stacks(t_stacks *stacks)
 {
 	if (stacks)
@@ -41,6 +31,17 @@ void	free_stacks(t_stacks *stacks)
 			free(stacks->b);
 		free(stacks);
 	}
+}
+
+void	*free_ops(t_ops *ops)
+{
+	if (ops)
+	{
+		if (ops->ops)
+			free(ops->ops);
+		free(ops);
+	}
+	return (NULL);
 }
 
 void	*free_splits(char **splits)

@@ -6,11 +6,18 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 17:00:17 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/29 21:08:42 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:08:29 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_elem	*get(t_stacks *stacks, int i, char stack)
+{
+	if (stack == 'a')
+		return (&stacks->a[get_index(stacks, stacks->a_start + i)]);
+	return (&stacks->b[get_index(stacks, stacks->b_start + i)]);
+}
 
 int	get_index(t_stacks *stacks, int i)
 {
@@ -65,9 +72,12 @@ int	*atoi_ptr(const char *str)
 	return (ptr);
 }
 
-t_elem	*get(t_stacks *stacks, int i, char stack)
+t_three	get_three(t_stacks *stacks)
 {
-	if (stack == 'a')
-		return (&stacks->a[get_index(stacks, stacks->a_start + i)]);
-	return (&stacks->b[get_index(stacks, stacks->b_start + i)]);
+	t_three	three;
+
+	three.top = stacks->a[get_index(stacks, stacks->a_start)].order;
+	three.mid = stacks->a[get_index(stacks, stacks->a_start + 1)].order;
+	three.bot = stacks->a[get_index(stacks, stacks->a_start + 2)].order;
+	return (three);
 }
