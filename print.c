@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 21:45:20 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/30 20:12:35 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/31 14:57:00 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ void	print_op(t_op op)
 		ft_printf("rrb");
 	else if (op == RRR)
 		ft_printf("rrr");
-	ft_printf("\n");
+	if (op != NONE)
+		ft_printf("\n");
 }

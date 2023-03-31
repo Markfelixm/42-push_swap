@@ -11,6 +11,7 @@ SRC := \
 	clean.c \
 	init.c \
 	sort.c \
+	optimize.c \
 	utility.c \
 	op_utility.c \
 	sort_utility.c

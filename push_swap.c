@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:47 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/30 19:09:10 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:31:17 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ int	main(int ac, char **av)
 	if (is_sorted(stacks))
 		clean_exit(stacks, NULL, false);
 	ops = mad_sort(stacks);
+	optimize_rr(ops);
 	print_ops(ops);
+
 	// debug(stacks); // TODO: remove debug
 	clean_exit(stacks, ops, false);
 }

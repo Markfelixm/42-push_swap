@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:52 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/30 19:03:20 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:30:32 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,10 @@ t_ops		*select_best_move(t_stacks *stacks);
 void		perform_best_move(t_stacks *stacks, t_ops *ops);
 void		sort_a_of_3(t_stacks *stacks, t_ops *ops);
 t_ops		*mad_sort(t_stacks *stacks);
+
+// Optimizations
+void		optimize_rr(t_ops *ops);
+t_op		seek_to_rotate(t_ops *ops, int *i);
+// void		seek_to_op(t_ops *ops, t_op op, int *i);
 
 #endif
