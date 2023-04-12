@@ -17,7 +17,7 @@ SRC := \
 	sort_utility.c
 LIBFT_DIR := Libft
 LIBFT := $(LIBFT_DIR)/libft.a
-CC_FLAG := -Wall -Wextra -Werror
+CC_FLAG := -Wall -Wextra -Werror -O3
 
 .PHONY: all clean fclean re
 
@@ -28,7 +28,6 @@ $(NAME): $(LIBFT)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
-	@make bonus -C $(LIBFT_DIR)
 
 clean:
 	@make clean -C $(LIBFT_DIR)

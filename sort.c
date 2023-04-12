@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 19:27:49 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/31 21:15:51 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:06:13 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ t_ops	*mad_sort(t_stacks *stacks)
 	ops = init_ops(30 * stacks->max_len);
 	if (ops == NULL)
 		clean_exit(stacks, NULL, true);
-	push_all_but_3(stacks, ops);
+	rough_sort_push(stacks, ops);
 	sort_a_of_3(stacks, ops);
 	while (stacks->b_len)
 		perform_best_move(stacks, ops);

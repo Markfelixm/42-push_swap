@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:38:27 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/30 15:13:25 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:07:13 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,4 @@ void	set_order(t_stacks *stacks)
 		}
 	}
 	free(copy);
-}
-
-void	push_all_but_3(t_stacks *stacks, t_ops *ops)
-{
-	while (stacks->a_len > 3)
-		add_op(ops, pb(stacks));
 }

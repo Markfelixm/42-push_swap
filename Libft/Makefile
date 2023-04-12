@@ -52,14 +52,17 @@ SUPPLEMENTARY := \
 	ft_printf \
 	ft_print_utils \
 	get_next_line_bonus \
-	get_next_line_utils_bonus
+	get_next_line_utils_bonus \
+	array_memory \
+	array_basic \
+	array_convenience
 SUPP_C := $(addsuffix .c, $(SUPPLEMENTARY))
 SUPP_O := $(addsuffix .o, $(SUPPLEMENTARY))
 CC_FLAG := -Wall -Wextra -Werror -c
 
 .PHONY: all clean fclean re bonus
 
-all: $(NAME)
+all: $(NAME) bonus
 
 $(NAME):
 	@cc $(CC_FLAG) $(SRC_C)

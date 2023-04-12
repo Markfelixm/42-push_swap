@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:52 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/31 21:30:32 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:54:33 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ t_three		get_three(t_stacks *stacks);
 bool		is_sorted(t_stacks *stacks);
 int			*bubble_sort_a(t_stacks *stacks);
 void		set_order(t_stacks *stacks);
-void		push_all_but_3(t_stacks *stacks, t_ops *ops);
 
 // Sort
 int			next_order_index_a(t_stacks *stacks, int arg);
@@ -133,8 +132,9 @@ void		sort_a_of_3(t_stacks *stacks, t_ops *ops);
 t_ops		*mad_sort(t_stacks *stacks);
 
 // Optimizations
-void		optimize_rr(t_ops *ops);
+void		optimize_rotates(t_ops *ops);
 t_op		seek_to_rotate(t_ops *ops, int *i);
-// void		seek_to_op(t_ops *ops, t_op op, int *i);
+void		rough_sort_push(t_stacks *stacks, t_ops *ops);
+bool		half_stack_average_is_high(t_stacks *stacks);
 
 #endif

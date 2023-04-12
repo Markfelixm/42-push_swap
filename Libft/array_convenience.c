@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   array_convenience.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 17:44:47 by marmulle          #+#    #+#             */
-/*   Updated: 2023/04/12 17:53:43 by marmulle         ###   ########.fr       */
+/*   Created: 2023/04/07 15:16:34 by marmulle          #+#    #+#             */
+/*   Updated: 2023/04/07 15:17:49 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "array.h"
 
-int	main(int ac, char **av)
+void	arr_append(t_arr *arr, void *el)
 {
-	t_stacks	*stacks;
-	t_ops		*ops;
+	if (arr->len + 1 > arr->max_len)
+		return ;
+	arr->data[arr->len] = el;
+	arr->len++;
+}
 
-	if (ac < 2)
-		return (42);
-	stacks = parse_to_stacks(ac, av);
-	if (stacks == NULL)
-		clean_exit(stacks, NULL, true);
-	set_order(stacks);
-	if (is_sorted(stacks))
-		clean_exit(stacks, NULL, false);
-	ops = mad_sort(stacks);
-	optimize_rotates(ops);
-	print_ops(ops);
-	clean_exit(stacks, ops, false);
+void	arr_prepend(t_arr *arr, void *el)
+{
+	arr_insert(arr, 0, el);
+	arr->len++;
 }
