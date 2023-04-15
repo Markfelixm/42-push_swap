@@ -1,6 +1,8 @@
 NAME := push_swap
+NAME_SRC := push_swap.c
+BONUS := checker
+BONUS_SRC := checker.c
 SRC := \
-	push_swap.c \
 	push.c \
 	swap.c \
 	rotate.c \
@@ -17,14 +19,14 @@ SRC := \
 	sort_utility.c
 LIBFT_DIR := Libft
 LIBFT := $(LIBFT_DIR)/libft.a
-CC_FLAG := -Wall -Wextra -Werror -O3
+CC_FLAG := -Wall -Wextra -Werror -O3 -g
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
 
-all: $(NAME)
+all: $(NAME) bonus
 
 $(NAME): $(LIBFT)
-	@cc $(CC_FLAG) $(SRC) $(LIBFT) -o $(NAME)
+	@cc $(CC_FLAG) $(SRC) $(NAME_SRC) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
@@ -33,7 +35,12 @@ clean:
 	@make clean -C $(LIBFT_DIR)
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(BONUS)
 	@make fclean -C $(LIBFT_DIR)
 
 re: fclean all
+
+bonus: $(BONUS)
+
+$(BONUS): $(LIBFT)
+	@cc $(CC_FLAG) $(SRC) $(BONUS_SRC) $(LIBFT) -o $(BONUS)

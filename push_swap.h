@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:52 by marmulle          #+#    #+#             */
-/*   Updated: 2023/04/12 17:54:33 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/04/15 17:49:52 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef enum e_op
 	RRA,
 	RRB,
 	RRR,
+	END,
 }	t_op;
 
 typedef struct s_ops
@@ -111,6 +112,7 @@ t_ops		*init_ops(int ops_max_len);
 // Operation Utility
 void		add_op(t_ops *t_ops, t_op op);
 void		do_op(t_stacks *stacks, t_op op);
+void		perform_ops(t_stacks *stacks, t_ops	*ops);
 
 // Utility
 t_elem		*get(t_stacks *stacks, int i, char stack);

@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:09:44 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/30 20:13:27 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/04/15 15:10:11 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,15 @@ void	do_op(t_stacks *stacks, t_op op)
 		rrb(stacks);
 	else if (op == RRR)
 		rrr(stacks);
+}
+
+void	perform_ops(t_stacks *stacks, t_ops	*ops)
+{
+	int	i;
+
+	if (ops == NULL)
+		return ;
+	i = -1;
+	while (++i < ops->len)
+		do_op(stacks, ops->ops[i]);
 }
