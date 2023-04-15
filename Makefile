@@ -19,7 +19,7 @@ SRC := \
 	sort_utility.c
 LIBFT_DIR := Libft
 LIBFT := $(LIBFT_DIR)/libft.a
-CC_FLAG := -Wall -Wextra -Werror -O3 -g
+CC_FLAG := -Wall -Wextra -Werror -O3
 
 .PHONY: all clean fclean re bonus
 
