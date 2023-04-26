@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:44:52 by marmulle          #+#    #+#             */
-/*   Updated: 2023/04/15 17:49:52 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:19:21 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,6 @@ typedef struct s_three
 	int	bot;
 }		t_three;
 
-// TODO: REMOVE
-// DEBUGGGGGG
-void		debug(t_stacks *stacks);
-
 // Operations
 t_op		sa(t_stacks *stacks);
 t_op		sb(t_stacks *stacks);
@@ -104,6 +100,7 @@ void		clean_exit(t_stacks *stacks, t_ops *ops, bool is_error);
 void		free_stacks(t_stacks *stacks);
 void		*free_ops(t_ops *ops);
 void		*free_splits(char **splits);
+void		*free_any_and_null(void *ptr);
 
 // Initializer
 t_stacks	*init_stacks(int ac);

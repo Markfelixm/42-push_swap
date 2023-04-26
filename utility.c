@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 17:00:17 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/30 19:08:29 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:23:42 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	*atoi_ptr(const char *str)
 		if (*str == '\0')
 			break ;
 		if (!ft_isdigit(*str))
-			return (NULL);
+			return (free_any_and_null(ptr));
 		res = res * 10 + (*(str++) - '0');
-		if (res < INT_MIN || res > INT_MAX)
-			return (NULL);
+		if (res * sign < INT_MIN || res * sign > INT_MAX)
+			return (free_any_and_null(ptr));
 	}
 	*ptr = sign * res;
 	return (ptr);

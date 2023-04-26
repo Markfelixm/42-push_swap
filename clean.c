@@ -6,7 +6,7 @@
 /*   By: marmulle <marmulle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:27:30 by marmulle          #+#    #+#             */
-/*   Updated: 2023/03/30 15:19:33 by marmulle         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:18:07 by marmulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,12 @@ void	*free_splits(char **splits)
 			free(splits[s++]);
 		free(splits);
 	}
+	return (NULL);
+}
+
+void	*free_any_and_null(void *ptr)
+{
+	if (ptr)
+		free(ptr);
 	return (NULL);
 }
